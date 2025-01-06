@@ -10,4 +10,4 @@
 | Applikation realisieren            | 6               |                   |            |                                                                     |
 | Reserve                            | 2               |                   |            |                                                                     |
 | Präsentation vorbereiten           | 1               |                   |            |                                                                     |
-| Total                              | 16              |                   |            |                                                                     |
+| **Total**                          | **16**          |                   |            |                                                                     |
