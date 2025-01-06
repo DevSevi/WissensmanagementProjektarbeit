@@ -8,4 +8,6 @@
 | Dokumentation nachführen   | 1               |                   |            |           |
 | Testfälle planen           | 1               |                   |            |           |
 | Applikation realisieren    | 6               |                   |            |           |
+| Reserve                    | 2               |                   |            |           |
 | Präsentation vorbereiten   | 1               |                   |            |           |
+| Total                      | 15              |                   |            |           |
