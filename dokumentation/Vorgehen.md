@@ -10,3 +10,5 @@ Programmen hin und her wechseln zu müssen.
 
 Bei der Form entscheide ich mich für ein Sequenzdiagramm, da dadurch der Ablauf sehr klar und übersichtlich wird.
 Zudem erstelle ich ein Klassendiagramm, um das Ganze für die Realisation vorzubereiten.
+
+Evtl. mit PlantUML https://plantuml.com/de/sequence-diagram
