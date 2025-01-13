@@ -3,7 +3,7 @@
 | Aktivität                          | Stunden geplant | Stunden geleistet | Delta | Erklärung                                                           |
 | ---------------------------------- | --------------- | ----------------- | ----- | ------------------------------------------------------------------- |
 | Auftrag studieren & planen         | 1               | 1.5               | 0.5   | Vorgehen und Entscheid für Tools hat mehr Zeit in Anspruch genommen |
-| Analyse                            | 1               |                   |       |                                                                     |
+| Analyse                            | 1               | 0.75 -            |       |                                                                     |
 | UML- und Klassendiagramm erstellen | 3               |                   |       |                                                                     |
 | Dokumentation nachführen           | 1               |                   |       |                                                                     |
 | Testfälle planen                   | 1               |                   |       |                                                                     |
