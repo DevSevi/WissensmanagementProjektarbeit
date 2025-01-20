@@ -1,0 +1,4 @@
+@startuml
+Projektleiter -> Projekt: 1 eröffnen()
+
+@enduml
