@@ -1,7 +1,11 @@
 ```mermaid
 sequenceDiagram
-    Alice->>John: Hello John, how are you?
-    John-->>Alice: Great!
-    Alice->>John: See you later!
+    Projektleiter->>Projekt: 1: eröffnen()
+    create participant Information
+    Projektmitarbeiter->>Information: 2: anlegen()
+    Projektleiter->>Information: 2: anlegen()
+    Information->>Projekt: 3: zuordnen()
+    Projektmitarbeiter->>Information: 4: suchen()
+    Projektleiter->>Information: 4: suchen()
 
 ```

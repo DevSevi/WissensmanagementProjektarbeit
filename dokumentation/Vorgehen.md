@@ -12,3 +12,5 @@ Bei der Form entscheide ich mich für ein Sequenzdiagramm, da dadurch der Ablauf
 Zudem erstelle ich ein Klassendiagramm, um das Ganze für die Realisation vorzubereiten.
 
 Evtl. mit PlantUML https://plantuml.com/de/sequence-diagram
+
+Ich habe mich doch umentschieden, das UML Sequenzdiagramm mit Mermaid zu erstellen, da dies auf Github auch besser dargestellt wird: https://mermaid.js.org/syntax/sequenceDiagram.html
