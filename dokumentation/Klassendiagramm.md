@@ -1,7 +1,4 @@
 ```mermaid
----
-Klassendiagramm Wissensmanagement
----
 classDiagram
     Person <|-- Projektleiter
     Person: +string Name
