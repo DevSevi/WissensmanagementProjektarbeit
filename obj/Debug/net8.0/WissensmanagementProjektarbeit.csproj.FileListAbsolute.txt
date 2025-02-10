@@ -1,0 +1,15 @@
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\bin\Debug\net8.0\WissensmanagementProjektarbeit.exe
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\bin\Debug\net8.0\WissensmanagementProjektarbeit.deps.json
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\bin\Debug\net8.0\WissensmanagementProjektarbeit.runtimeconfig.json
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\bin\Debug\net8.0\WissensmanagementProjektarbeit.dll
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\bin\Debug\net8.0\WissensmanagementProjektarbeit.pdb
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\WissensmanagementProjektarbeit.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\WissensmanagementProjektarbeit.AssemblyInfoInputs.cache
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\WissensmanagementProjektarbeit.AssemblyInfo.cs
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\WissensmanagementProjektarbeit.csproj.CoreCompileInputs.cache
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\WissensmanagementProjektarbeit.sourcelink.json
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\WissensmanagementProjektarbeit.dll
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\refint\WissensmanagementProjektarbeit.dll
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\WissensmanagementProjektarbeit.pdb
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\WissensmanagementProjektarbeit.genruntimeconfig.cache
+C:\Users\Séverin\source\repos\DevSevi\WissensmanagementProjektarbeit\obj\Debug\net8.0\ref\WissensmanagementProjektarbeit.dll
