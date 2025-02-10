@@ -7,3 +7,4 @@
 - Die Anforderungsanalyse ist [hier](dokumentation/Anforderungsanalyse.md) zu finden
 - Das UML-Sequenzdiagramm ist [hier](dokumentation/Sequenzdiagramm.md) zu finden
 - Das Klassendiagramm ist [hier](dokumentation/Klassendiagramm.md) zu finden
+- Die Testfälle sind [hier](dokumentation/Testfaelle.md) abgebildet
