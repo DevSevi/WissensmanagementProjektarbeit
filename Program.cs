@@ -15,7 +15,9 @@ namespace WissemsManagement
             Console.ReadKey();
 
             Projekt projekt = new Projekt("Testprojekt", "KundeXY", "ein Muss");
+            Projekt projekt2 = new Projekt("Hiss für alle", "Hiss AG", "Hiss für alle");
             projekte.Add(projekt);
+            projekte.Add(projekt2);
             Serialisieren(projekte);
         }
 
