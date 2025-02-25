@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WissensmanagementProjektarbeit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+78d958786a9cddcf1f36bf71118680e2ee11baee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+815dc2ceebc3b5d867092d0928f8548056234dda")]
 [assembly: System.Reflection.AssemblyProductAttribute("WissensmanagementProjektarbeit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WissensmanagementProjektarbeit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
