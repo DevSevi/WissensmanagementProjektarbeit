@@ -4,9 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-
-            Console.WriteLine("Test");
+            Projektleiter pl = new Projektleiter("Séverin", "Kiener");
+            Console.WriteLine(pl.GetNameVorname());
+            Console.ReadKey();
         }
     }
 
@@ -107,14 +107,5 @@
         }
         string Titel { get; set; }
         string Inhalt { get; set; }
-        public void Kommentieren()
-        {
-
-        }
-
-        public void Ergaenzen()
-        {
-
-        }
     }
 }
