@@ -1,20 +1,41 @@
-﻿namespace WissemsManagement
+﻿using System.Diagnostics;
+using System.Text.Json;
+using System.Text;
+
+namespace WissemsManagement
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            List<Projekt> projekte = new List<Projekt>();
+
             Projektleiter pl = new Projektleiter("Séverin", "Kiener");
             Console.WriteLine(pl.GetNameVorname());
             Console.ReadKey();
+
+            Projekt projekt = new Projekt("Testprojekt", "KundeXY", "ein Muss");
+            projekte.Add(projekt);
+            Serialisieren(projekte);
+        }
+
+        static void Serialisieren(List<Projekt> projekte)
+        {
+            JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
+            {
+                WriteIndented = true,
+                IncludeFields = true
+            };
+            string jsonstring = JsonSerializer.Serialize(projekte, jsonSerializerOptions);
+            File.WriteAllText(@"C:\Daten\projekte.json", jsonstring);
         }
     }
 
     [Serializable]
     abstract class Person
     {
-        string Name { get; set; }
-        string Vorname { get; set; }
+        public string Name { get; set; }
+        public string Vorname { get; set; }
 
         public Person(string vorname, string name)
         {
@@ -47,9 +68,9 @@
     [Serializable]
     class Projekt
     {
-        string Name { get; set; }
-        string Kunde { get; set; }
-        string Anforderungen { get; set; }
+        public string Name { get; set; }
+        public string Kunde { get; set; }
+        public string Anforderungen { get; set; }
 
         public Projekt(string name, string kunde, string anforderungen)
         {
@@ -85,7 +106,7 @@
         public Information()
         {
         }
-        int ID { get; set; }
+        public int ID { get; set; }
         public void Kommentieren()
         {
 
@@ -105,7 +126,7 @@
             this.Titel = Titel;
             this.Inhalt = Inhalt;
         }
-        string Titel { get; set; }
-        string Inhalt { get; set; }
+        public string Titel { get; set; }
+        public string Inhalt { get; set; }
     }
 }
