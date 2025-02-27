@@ -12,13 +12,18 @@ namespace WissensManagement
 
             Projektleiter pl = new Projektleiter("Séverin", "Kiener");
             Projektmitarbeiter projektmitarbeiter = new Projektmitarbeiter("Luca", "Zaugg");
+
             Projekt projekt = new Projekt("Testprojekt", "KundeXY", "ein Muss", pl, projektmitarbeiter);
             Bild bild = new Bild("Bild1", "URL1");
-
+            bild.AddTag(new Tag("1", "Tag1"));
             projekt.AddInformation(bild);
+
             Projekt projekt2 = new Projekt("Hiss für alle", "Hiss AG", "Hiss für alle", pl, projektmitarbeiter);
+
             projekte.Add(projekt);
             projekte.Add(projekt2);
+
+            
 
             Console.WriteLine("Test");
 
@@ -137,10 +142,25 @@ namespace WissensManagement
     [Serializable]
     abstract class Information
     {
+        public List<Tag> tags { get; set; }
         public Information()
         {
         }
         public int ID { get; set; }
+
+        public void AddTag(Tag tag)
+        {
+            if(tags.Count > 3)
+            {
+                throw new Exception("Maximal 3 Tags erlaubt");
+            }
+            tags.Add(tag);
+        }
+
+        public void ClearTags()
+        {
+            tags.Clear();
+        }
         public void Kommentieren()
         {
 
@@ -184,5 +204,18 @@ namespace WissensManagement
         }
         public string Titel { get; set; }
         public string URL { get; set; }
+    }
+
+    class Tag
+    {
+        public string TagID { get; set; }
+        public string TagName { get; set; }
+
+        public Tag(string TagID, string TagName)
+        {
+            this.TagID = TagID;
+            this.TagName = TagName;
+        }
+
     }
 }
