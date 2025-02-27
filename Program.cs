@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text;
 
-namespace WissemsManagement
+namespace WissensManagement
 {
     internal class Program
     {
@@ -11,17 +11,28 @@ namespace WissemsManagement
             List<Projekt> projekte = new List<Projekt>();
 
             Projektleiter pl = new Projektleiter("Séverin", "Kiener");
-            Console.WriteLine(pl.GetNameVorname());
-            Console.ReadKey();
+            Projektmitarbeiter projektmitarbeiter = new Projektmitarbeiter("Luca", "Zaugg");
+            Projekt projekt = new Projekt("Testprojekt", "KundeXY", "ein Muss", pl, projektmitarbeiter);
+            Bild bild = new Bild("Bild1", "URL1");
 
-            Projekt projekt = new Projekt("Testprojekt", "KundeXY", "ein Muss");
-            Projekt projekt2 = new Projekt("Hiss für alle", "Hiss AG", "Hiss für alle");
+            projekt.AddInformation(bild);
+            Projekt projekt2 = new Projekt("Hiss für alle", "Hiss AG", "Hiss für alle", pl, projektmitarbeiter);
             projekte.Add(projekt);
             projekte.Add(projekt2);
-            Serialisieren(projekte);
+
+            Console.WriteLine("Test");
+
+            SaveProjects(projekte);
+
+            foreach(Projekt proj in projekte)
+            {
+                Console.WriteLine(proj.GetProjektInfos());
+            }
+
+            Console.ReadKey();
         }
 
-        static void Serialisieren(List<Projekt> projekte)
+        static void SaveProjects(List<Projekt> projekte)
         {
             JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
             {
@@ -36,18 +47,18 @@ namespace WissemsManagement
     [Serializable]
     abstract class Person
     {
-        public string Name { get; set; }
-        public string Vorname { get; set; }
+        public string name { get; set; }
+        public string vorname { get; set; }
 
         public Person(string vorname, string name)
         {
-            Name = name;
-            Vorname = vorname;
+            this.name = name;
+            this.vorname = vorname;
         }
 
         public string GetNameVorname()
         {
-            return $"{Vorname} {Name}";
+            return $"{vorname} {name}";
         }
     }
 
@@ -70,35 +81,56 @@ namespace WissemsManagement
     [Serializable]
     class Projekt
     {
-        public string Name { get; set; }
-        public string Kunde { get; set; }
-        public string Anforderungen { get; set; }
+        public string name { get; set; }
+        public string kunde { get; set; }
+        public string anforderungen { get; set; }
 
-        public Projekt(string name, string kunde, string anforderungen)
+        public Projektleiter projektleiter { get; set; }
+
+        public Projektmitarbeiter projektmitarbeiter { get; set; }
+
+        public List<Information> informationen { get; set; }
+
+        public Projekt(string name, string kunde, string anforderungen, Projektleiter projektleiter, Projektmitarbeiter projektmitarbeiter)
         {
-            Name = name;
-            Kunde = kunde;
-            Anforderungen = anforderungen;
+            this.name = name;
+            this.kunde = kunde;
+            this.anforderungen = anforderungen;
+            this.projektleiter = projektleiter;
+            this.projektmitarbeiter = projektmitarbeiter;
+        }
+
+        public void AddInformation(Information information)
+        {
+            informationen.Add(information);
         }
 
         public string GetName()
         {
-            return Name;
+            return name;
         }
 
         public string GetKunde()
         {
-            return Kunde;
+            return kunde;
+        }
+
+        public string GetProjektInfos()
+        {
+            string ausgabe = $"Projekt {name}, Kunde {kunde}, Projektleiter {projektleiter.GetNameVorname()}, " +
+                $"Projektmitarbeiter {projektmitarbeiter.GetNameVorname()}";
+
+            return ausgabe;
         }
 
         public void SetName(string name)
         {
-            Name = name;
+            this.name = name;
         }
 
         public void SetKunde(string kunde)
         {
-            Kunde = kunde;
+            this.kunde = kunde;
         }
     }
 
