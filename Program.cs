@@ -131,4 +131,26 @@ namespace WissemsManagement
         public string Titel { get; set; }
         public string Inhalt { get; set; }
     }
+
+    class Bild : Information
+    {
+        public Bild(string Titel, string URL)
+        {
+            this.Titel = Titel;
+            this.URL = URL;
+        }
+        public string Titel { get; set; }
+        public string URL { get; set; }
+    }
+
+    class Dokument : Information
+    {
+        public Dokument(string Titel, string URL)
+        {
+            this.Titel = Titel;
+            this.URL = URL;
+        }
+        public string Titel { get; set; }
+        public string URL { get; set; }
+    }
 }
