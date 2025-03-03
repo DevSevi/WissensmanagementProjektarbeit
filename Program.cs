@@ -10,33 +10,6 @@ namespace WissensManagement
         {
             List<Projekt> projekte = LoadProjects();
             HauptMenu(projekte);
-
-
-
-            /*Projektleiter pl = new Projektleiter("Séverin", "Kiener");
-            Projektmitarbeiter projektmitarbeiter = new Projektmitarbeiter("Luca", "Zaugg");
-
-            Projekt projekt = new Projekt("Testprojekt", "KundeXY", "ein Muss", pl, projektmitarbeiter);
-            Bild bild = new Bild("Bild1", "URL1");
-            bild.AddTag(new Tag("1", "Tag1"));
-            projekt.AddInformation(bild);
-
-            Projekt projekt2 = new Projekt("Hiss für alle", "Hiss AG", "Hiss für alle", pl, projektmitarbeiter);
-
-            projekte.Add(projekt);
-            projekte.Add(projekt2);
-
-
-
-            Console.WriteLine("Test");
-
-            SaveProjects(projekte);
-
-            foreach(Projekt proj in projekte)
-            {
-                Console.WriteLine(proj.GetProjektInfos());
-            }
-            */
         }
 
         static void SaveProjects(List<Projekt> projekte)
@@ -54,7 +27,7 @@ namespace WissensManagement
         {
             string jsonstring = File.ReadAllText(@"C:\Daten\projekte.json");
             List<Projekt> projekte = JsonSerializer.Deserialize<List<Projekt>>(jsonstring);
-            if(projekte == null)
+            if (projekte == null)
             {
                 return new List<Projekt>();
             }
@@ -73,33 +46,45 @@ namespace WissensManagement
             Console.WriteLine("5: Speichern und beenden");
             Console.WriteLine("6: Beenden ohne zu speichern");
 
-            int auswahl = Convert.ToInt32(Console.ReadLine());
-            switch (auswahl)
+            var keyInfo = Console.ReadKey();
+            int auswahl;
+            if (int.TryParse(keyInfo.KeyChar.ToString(), out auswahl))
             {
-                case 1:
-                    Projekt projektNeu = ProjektErstellenMenu();
-                    projekte.Add(projektNeu);
-                    HauptMenu(projekte);
-                    break;
-                case 2:
-                    ProjektBearbeitenMenu(projekte[0]);
-                    HauptMenu(projekte);
-                    break;
-                case 3:
-                    Console.WriteLine("Projekt löschen");
-                    break;
-                case 4:
-                    Console.WriteLine(ProjekteAnzeigenMenu(projekte));
-                    HauptMenu(projekte);
-                    break;
-                case 5:
-                    SaveProjects(projekte);
-                    break;
-                case 6:
-                    break;
-                default:
-                    Console.WriteLine("Ungültige Eingabe");
-                    break;
+                switch (auswahl)
+                {
+                    case 1:
+                        Projekt projektNeu = ProjektErstellenMenu();
+                        projekte.Add(projektNeu);
+                        HauptMenu(projekte);
+                        break;
+                    case 2:
+                        // noch erweitern
+                        ProjektBearbeitenMenu(projekte[0]);
+                        HauptMenu(projekte);
+                        break;
+                    case 3:
+                        ProjektLoeschenMenu(projekte);
+                        HauptMenu(projekte);
+                        break;
+                    case 4:
+                        Console.WriteLine(ProjekteAnzeigenMenu(projekte));
+                        HauptMenu(projekte);
+                        break;
+                    case 5:
+                        SaveProjects(projekte);
+                        break;
+                    case 6:
+                        break;
+                    default:
+                        Console.WriteLine("Ungültige Eingabe");
+                        HauptMenu(projekte);
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Ungültige Eingabe");
+                HauptMenu(projekte);
             }
         }
 
@@ -128,27 +113,46 @@ namespace WissensManagement
 
             Projekt projekt = new Projekt(name, kunde, anforderungen, pl, pm);
 
+            Console.WriteLine("Projekt erfolgreich angelegt");
+
             return projekt;
         }
 
         static string ProjekteAnzeigenMenu(List<Projekt> projekte)
         {
-            if(projekte.Count == 0)
+            if (projekte.Count == 0)
             {
                 return "Keine Projekte vorhanden";
             }
             StringBuilder sb = new StringBuilder();
-            foreach(Projekt projekt in projekte)
+            foreach (Projekt projekt in projekte)
             {
                 sb.AppendLine(projekt.GetProjektInfos());
             }
             return sb.ToString();
         }
 
+        // noch erweitern
         static void ProjektBearbeitenMenu(Projekt projekt)
         {
             projekt.AddInformation(new Text("Test", "Test"));
             //return projekt;
+        }
+
+        static void ProjektLoeschenMenu(List<Projekt> projekte)
+        {
+            Console.WriteLine("Welches Projekt löschen?");
+            var keyInfo = Console.ReadKey();
+            int auswahl;
+            if (int.TryParse(keyInfo.KeyChar.ToString(), out auswahl))
+            {
+                projekte.RemoveAt(auswahl - 1);
+                Console.WriteLine("Projekt gelöscht!");
+            }
+            else
+            {
+                Console.WriteLine("Ungültige Eingabe");
+            }
         }
     }
 
