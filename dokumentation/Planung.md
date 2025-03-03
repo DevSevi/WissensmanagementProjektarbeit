@@ -7,7 +7,7 @@
 | UML- und Klassendiagramm erstellen | 3               | 3.5               | 0.5   | Klassendiagramm benötigt viel Zeit                                  |
 | Dokumentation nachführen           | 1               | 0.5               | 0.75  |                                                                     |
 | Testfälle planen                   | 1               | 0.5               | -0.5  | Simpler als gedacht                                                 |
-| Applikation realisieren            | 6               | 3.5               |       |                                                                     |
+| Applikation realisieren            | 6               | 4.5               |       |                                                                     |
 | Reserve                            | 2               |                   |       |                                                                     |
 | Präsentation vorbereiten           | 1               |                   |       |                                                                     |
 | **Total**                          | **16**          |                   |       |                                                                     |
