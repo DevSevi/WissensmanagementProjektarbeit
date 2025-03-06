@@ -59,7 +59,7 @@ namespace WissensManagement
                         break;
                     case 2:
                         // noch erweitern
-                        ProjektBearbeitenMenu(projekte[0]);
+                        ProjektBearbeitenMenu(projekte);
                         HauptMenu(projekte);
                         break;
                     case 3:
@@ -67,7 +67,7 @@ namespace WissensManagement
                         HauptMenu(projekte);
                         break;
                     case 4:
-                        Console.WriteLine(ProjekteAnzeigenMenu(projekte));
+                        Console.WriteLine("\n" + ProjekteAnzeigenMenu(projekte));
                         HauptMenu(projekte);
                         break;
                     case 5:
@@ -90,7 +90,7 @@ namespace WissensManagement
 
         static Projekt ProjektErstellenMenu()
         {
-            Console.WriteLine("Projektname angeben");
+            Console.WriteLine("\nProjektname angeben");
             string name = Console.ReadLine();
             Console.WriteLine("Kunde angeben");
             string kunde = Console.ReadLine();
@@ -133,10 +133,48 @@ namespace WissensManagement
         }
 
         // noch erweitern
-        static void ProjektBearbeitenMenu(Projekt projekt)
+        static void ProjektBearbeitenMenu(List<Projekt> projekte)
+        {
+            Console.WriteLine("Welches Projekt bearbeiten?");
+            StringBuilder sb = new StringBuilder();
+            int counter = 1;
+            foreach (Projekt projekt in projekte)
+            {
+                sb.AppendLine(counter.ToString() + ": " + projekt.GetProjektInfos());
+                counter++;
+            }
+            Console.WriteLine(sb.ToString());
+            var keyInfoProjektNr = Console.ReadKey();
+            int projektNr;
+            if(int.TryParse(keyInfoProjektNr.KeyChar.ToString(), out projektNr))
+            {
+                Console.WriteLine($"\nProjekt {projektNr.ToString()} ausgewählt");
+            }
+            else
+            {
+                Console.WriteLine("Ungültige Eingabe");
+            }
+            Console.WriteLine("Auswahl Bearbeitungsmöglichkeiten:");
+            Console.WriteLine("1: Information hinzufügen");
+            var keyInfo = Console.ReadKey();
+            int auswahl;
+            if (int.TryParse(keyInfo.KeyChar.ToString(), out auswahl))
+            {
+                switch (auswahl)
+                {
+                    case 1:
+                        InformationHinzufuegenMenu(projekte[projektNr - 1]);
+                        break;
+                    default:
+                        Console.WriteLine("Ungültige Eingabe");
+                        break;
+                }
+            }
+        }
+
+        static void InformationHinzufuegenMenu(Projekt projekt)
         {
             projekt.AddInformation(new Text("Test", "Test"));
-            //return projekt;
         }
 
         static void ProjektLoeschenMenu(List<Projekt> projekte)
@@ -146,6 +184,7 @@ namespace WissensManagement
             int auswahl;
             if (int.TryParse(keyInfo.KeyChar.ToString(), out auswahl))
             {
+                Console.WriteLine($"\nProjekt wird gelöscht: {projekte[auswahl - 1].GetProjektInfos()}");
                 projekte.RemoveAt(auswahl - 1);
                 Console.WriteLine("Projekt gelöscht!");
             }
