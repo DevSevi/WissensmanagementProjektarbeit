@@ -13,4 +13,10 @@ Zudem erstelle ich ein Klassendiagramm, um das Ganze für die Realisation vorzub
 
 Evtl. mit PlantUML https://plantuml.com/de/sequence-diagram
 
-Ich habe mich doch umentschieden, das UML Sequenzdiagramm mit Mermaid zu erstellen, da dies auf Github auch besser dargestellt wird: https://mermaid.js.org/syntax/sequenceDiagram.html
+Ich habe mich doch umentschieden, das UML Sequenzdiagramm mit Mermaid zu erstellen, da dies auf Github auch besser
+dargestellt wird: https://mermaid.js.org/syntax/sequenceDiagram.html
+
+## Realisation
+
+Ich habe mich für die Realisation mit C# entschieden, da ich mit dieser Sprache am meisten Erfahrung habe. Da ich
+das Projekt alleine durchführe, verzichte ich auf ein GUI und mache alles in einer Konsolen-App.
