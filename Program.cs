@@ -424,7 +424,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    abstract class Person
+    public abstract class Person
     {
         public string name { get; set; }
         public string vorname { get; set; }
@@ -442,7 +442,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    class Projektleiter : Person
+    public class Projektleiter : Person
     {
         public Projektleiter(string vorname, string name) : base(vorname, name)
         {
@@ -450,7 +450,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    class Projektmitarbeiter : Person
+    public class Projektmitarbeiter : Person
     {
         public Projektmitarbeiter(string vorname, string name) : base(vorname, name)
         {
@@ -458,7 +458,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    class Projekt
+    public class Projekt
     {
         public string name { get; set; }
         public string kunde { get; set; }
@@ -570,7 +570,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    abstract class Information
+    public abstract class Information
     {
         public string Titel { get; set; }
         public List<Tag> Tags { get; set; }
@@ -599,7 +599,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    class Text : Information
+    public class Text : Information
     {
         public Text(string Titel, string Inhalt, List<Tag> Tags) : base(Titel, Tags)
         {
@@ -620,7 +620,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    class Bild : Information
+    public class Bild : Information
     {
         public Bild(string Titel, string URL, List<Tag> Tags) : base(Titel, Tags)
         {
@@ -630,7 +630,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    class Dokument : Information
+    public class Dokument : Information
     {
         public Dokument(string Titel, string URL, List<Tag> Tags) : base(Titel, Tags)
         {
@@ -640,7 +640,7 @@ namespace WissensManagement
     }
 
     [Serializable]
-    class Tag
+    public class Tag
     {
         public string TagID { get; set; }
         public string TagName { get; set; }
