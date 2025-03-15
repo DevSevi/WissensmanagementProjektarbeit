@@ -9,7 +9,7 @@
 **Anforderung**: Projekt soll abgespeichert werden können.
 **Testergebnis**: OK, passt so
 
-# 2: Information anlegen
+## 2: Information anlegen
 
 - Projekt: Testprojekt
 - Text: "blabla"
@@ -18,7 +18,7 @@
 **Anforderung**: Information soll angelegt werden können.
 **Testergebnis**: OK, passt so
 
-# 3: Information suchen
+## 3: Information suchen
 
 - Alle Informationen mit Tag "Analyse" suchen
 
