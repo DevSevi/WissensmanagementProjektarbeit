@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
 using System.Text;
+using Wissensmanagement;
 
 namespace WissensManagement
 {
@@ -11,7 +12,7 @@ namespace WissensManagement
             List<Projekt> projekte;
             try
             {
-                projekte = LoadProjects();
+                projekte = LoadProjects(@"C:\Daten\projekte.json");
             }
             catch (Exception)
             {
@@ -20,7 +21,7 @@ namespace WissensManagement
             HauptMenu(projekte);
         }
 
-        static void SaveProjects(List<Projekt> projekte)
+        static void SaveProjects(List<Projekt> projekte, string path)
         {
             JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
             {
@@ -28,12 +29,12 @@ namespace WissensManagement
                 IncludeFields = true
             };
             string jsonstring = JsonSerializer.Serialize(projekte, jsonSerializerOptions);
-            File.WriteAllText(@"C:\Daten\projekte.json", jsonstring);
+            File.WriteAllText(path, jsonstring);
         }
 
-        static List<Projekt> LoadProjects()
+        static List<Projekt> LoadProjects(string path)
         {
-            string jsonstring = File.ReadAllText(@"C:\Daten\projekte.json");
+            string jsonstring = File.ReadAllText(path);
             List<Projekt> projekte = JsonSerializer.Deserialize<List<Projekt>>(jsonstring);
             if (projekte == null)
             {
@@ -83,7 +84,7 @@ namespace WissensManagement
                         HauptMenu(projekte);
                         break;
                     case 6:
-                        SaveProjects(projekte);
+                        SaveProjects(projekte, @"C:\Daten\projekte.json");
                         break;
                     case 7:
                         break;
@@ -160,9 +161,11 @@ namespace WissensManagement
                 return "Keine Projekte vorhanden";
             }
             StringBuilder sb = new StringBuilder();
+            int counter = 1;
             foreach (Projekt projekt in projekte)
             {
-                sb.AppendLine(projekt.GetProjektInfos());
+                sb.AppendLine($"{counter.ToString()}: {projekt.GetProjektInfos()}\n---------");
+                counter++;
             }
             return sb.ToString();
         }
@@ -420,241 +423,6 @@ namespace WissensManagement
             {
                 Console.WriteLine("Ungültige Eingabe");
             }
-        }
-    }
-
-    [Serializable]
-    public abstract class Person
-    {
-        public string name { get; set; }
-        public string vorname { get; set; }
-
-        public Person(string vorname, string name)
-        {
-            this.name = name;
-            this.vorname = vorname;
-        }
-
-        public string GetNameVorname()
-        {
-            return $"{vorname} {name}";
-        }
-    }
-
-    [Serializable]
-    public class Projektleiter : Person
-    {
-        public Projektleiter(string vorname, string name) : base(vorname, name)
-        {
-        }
-    }
-
-    [Serializable]
-    public class Projektmitarbeiter : Person
-    {
-        public Projektmitarbeiter(string vorname, string name) : base(vorname, name)
-        {
-        }
-    }
-
-    [Serializable]
-    public class Projekt
-    {
-        public string name { get; set; }
-        public string kunde { get; set; }
-        public string anforderungen { get; set; }
-        public Guid ID { get; set; }
-
-        public Projektleiter projektleiter { get; set; }
-
-        public Projektmitarbeiter projektmitarbeiter { get; set; }
-
-        public List<Information> informationen { get; set; }
-        
-        public List<Tag> tags { get; set; }
-        public Projekt(string name, string kunde, string anforderungen, Projektleiter projektleiter, Projektmitarbeiter projektmitarbeiter, List<Tag> tags)
-        {
-            this.name = name;
-            this.kunde = kunde;
-            this.anforderungen = anforderungen;
-            this.projektleiter = projektleiter;
-            this.projektmitarbeiter = projektmitarbeiter;
-            ID = Guid.NewGuid();
-            informationen = new List<Information>();
-            this.tags = tags;
-        }
-        public Projekt(string name, string kunde, string anforderungen, Projektleiter projektleiter, Projektmitarbeiter projektmitarbeiter)
-        {
-            this.name = name;
-            this.kunde = kunde;
-            this.anforderungen = anforderungen;
-            this.projektleiter = projektleiter;
-            this.projektmitarbeiter = projektmitarbeiter;
-            ID = Guid.NewGuid();
-            informationen = new List<Information>();
-            tags = new List<Tag>();
-        }
-
-        // **Parameterloser Konstruktor für die Deserialisierung**
-        public Projekt() { }
-
-        public void AddInformation(Information information)
-        {
-            informationen.Add(information);
-        }
-
-        public void AddTag(Tag tag)
-        {
-            tags.Add(tag);
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
-
-        public string GetKunde()
-        {
-            return kunde;
-        }
-
-        public string GetProjektInfos()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"Projekt {name} - ID {ID}, Kunde {kunde}, Projektleiter {projektleiter.GetNameVorname()}, " +
-                $"Projektmitarbeiter {projektmitarbeiter.GetNameVorname()}");
-            if (informationen != null && informationen.Count > 0)
-            {
-                sb.AppendLine("informationen:");
-                foreach (Information info in informationen)
-                {
-                    sb.Append(info.ID.ToString());
-                }
-            }
-
-            return sb.ToString();
-        }
-
-        public List<Information> SearchInformationMitTag(string Tag)
-        {
-            List<Information> infosAusgabe = new List<Information>();
-            if (informationen != null && informationen.Count > 0)
-            {
-                foreach (Information info in informationen)
-                {
-                    if(info.Tags != null && info.Tags.Count > 0)
-                    {
-                        foreach (Tag tag in info.Tags)
-                        {
-                            if (tag.TagName == Tag)
-                            {
-                                infosAusgabe.Add(info);
-                            }
-                        }
-                    }
-
-                }
-            }
-            return infosAusgabe;
-        }
-
-        public void SetName(string name)
-        {
-            this.name = name;
-        }
-
-        public void SetKunde(string kunde)
-        {
-            this.kunde = kunde;
-        }
-    }
-
-    [Serializable]
-    public abstract class Information
-    {
-        public string Titel { get; set; }
-        public List<Tag> Tags { get; set; }
-        public Information(string Titel, List<Tag> Tags)
-        {
-            Random rand = new Random();
-            ID = rand.Next();
-            this.Titel = Titel;
-            this.Tags = Tags;
-        }
-        public int ID { get; set; }
-
-        public void AddTag(Tag tag)
-        {
-            if(Tags != null && Tags.Count > 3)
-            {
-                throw new Exception("Maximal 3 Tags erlaubt");
-            }
-            Tags.Add(tag);
-        }
-
-        public void ClearTags()
-        {
-            Tags.Clear();
-        }
-    }
-
-    [Serializable]
-    public class Text : Information
-    {
-        public Text(string Titel, string Inhalt, List<Tag> Tags) : base(Titel, Tags)
-        {
-            this.Inhalt = Inhalt;
-        }
-        public string Inhalt { get; set; }
-
-        public void ChangeInhalt(string Inhalt)
-        {
-            string oldInhalt = this.Inhalt;
-            this.Inhalt = Inhalt;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"Alter Inhalt: {oldInhalt}");
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Neuer Inhalt: {this.Inhalt}");
-            Console.ResetColor();
-        }
-    }
-
-    [Serializable]
-    public class Bild : Information
-    {
-        public Bild(string Titel, string URL, List<Tag> Tags) : base(Titel, Tags)
-        {
-            this.URL = URL;
-        }
-        public string URL { get; set; }
-    }
-
-    [Serializable]
-    public class Dokument : Information
-    {
-        public Dokument(string Titel, string URL, List<Tag> Tags) : base(Titel, Tags)
-        {
-            this.URL = URL;
-        }
-        public string URL { get; set; }
-    }
-
-    [Serializable]
-    public class Tag
-    {
-        public string TagID { get; set; }
-        public string TagName { get; set; }
-
-        public Tag(string TagID, string TagName)
-        {
-            this.TagID = TagID;
-            this.TagName = TagName;
-        }
-
-        public string GetTagInfos()
-        {
-            return $"Tag {TagID} - {TagName}";
-
         }
     }
 }
