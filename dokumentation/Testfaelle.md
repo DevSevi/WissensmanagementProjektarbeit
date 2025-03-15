@@ -6,7 +6,8 @@
 - Kunde: Pilotkunde
 - Projektleiter: Hans Peäl
 
-Hinweis soll erscheinen, dass Projekt nicht vollständig ist (Kernanforderungen fehlen)
+**Anforderung**: Projekt soll abgespeichert werden können.
+**Testergebnis**: OK, passt so
 
 # 2: Information anlegen
 
@@ -14,10 +15,12 @@ Hinweis soll erscheinen, dass Projekt nicht vollständig ist (Kernanforderungen 
 - Text: "blabla"
 - Tag hinzufügen: "Analyse"
 
-Information soll angelegt werden können
+**Anforderung**: Information soll angelegt werden können
+**Testergebnis**: OK, passt so
 
 # 3: Information suchen
 
 - Alle Informationen mit Tag "Analyse" suchen
 
-Informationen sollen in Suche erscheinen
+**Anforderung**: Informationen sollen in Suche erscheinen
+**Testergebnis**: OK, passt so

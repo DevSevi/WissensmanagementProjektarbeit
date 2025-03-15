@@ -2,6 +2,8 @@
 using System.Text.Json;
 using System.Text;
 using Wissensmanagement;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 
 namespace WissensManagement
 {
@@ -23,7 +25,7 @@ namespace WissensManagement
 
         static void SaveProjects(List<Projekt> projekte, string path)
         {
-            JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
+            var jsonSerializerOptions = new JsonSerializerOptions
             {
                 WriteIndented = true,
                 IncludeFields = true
@@ -172,7 +174,7 @@ namespace WissensManagement
 
         static void ProjektBearbeitenMenu(List<Projekt> projekte)
         {
-            Console.WriteLine("\nWelches Projekt bearbeiten?");
+            Console.WriteLine("\nWelches Projekt bearbeiten (Nr. angeben)?");
             StringBuilder sb = new StringBuilder();
             int counter = 1;
             foreach (Projekt projekt in projekte)
@@ -422,6 +424,30 @@ namespace WissensManagement
             else
             {
                 Console.WriteLine("Ungültige Eingabe");
+            }
+        }
+        public class CustomPolymorphicResolver : DefaultJsonTypeInfoResolver
+        {
+            public override JsonTypeInfo GetTypeInfo(Type type, JsonSerializerOptions options)
+            {
+                var info = base.GetTypeInfo(type, options);
+
+                if (type == typeof(Information))
+                {
+                    info.PolymorphismOptions = new JsonPolymorphismOptions
+                    {
+                        TypeDiscriminatorPropertyName = "$type",  // Fügt einen Typmarker im JSON hinzu
+                        IgnoreUnrecognizedTypeDiscriminators = true,
+                        DerivedTypes =
+                {
+                    new JsonDerivedType(typeof(Text), "Text"),
+                    new JsonDerivedType(typeof(Bild), "Bild"),
+                    new JsonDerivedType(typeof(Dokument), "Dokument")
+                }
+                    };
+                }
+
+                return info;
             }
         }
     }

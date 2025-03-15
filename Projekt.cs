@@ -81,16 +81,35 @@ namespace Wissensmanagement
                 {
                     sb.AppendLine($"    {tag.TagID} - {tag.TagName}");
                 }
-            }
-            if (informationen != null && informationen.Count > 0)
-            {
-                sb.AppendLine("     informationen:");
-                foreach (Information info in informationen)
-                {
-                    sb.AppendLine("     " + info.ID.ToString());
-                }
+                sb.AppendLine("    " + informationen.Count.ToString() + " Informationen vorhanden");
             }
 
+            return sb.ToString();
+        }
+
+        public string GetInformationen()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (informationen != null && informationen.Count > 0)
+            {
+                sb.AppendLine("Informationen:");
+                foreach (Information info in informationen)
+                {
+                    sb.AppendLine(info.ID.ToString());
+                    if (info is Text)
+                    {
+                        sb.AppendLine("Inhalt: " + ((Text)info).Inhalt);
+                    }
+                    else if (info is Bild)
+                    {
+                        sb.AppendLine("URL: " + ((Bild)info).URL);
+                    }
+                    else if (info is Dokument)
+                    {
+                        sb.AppendLine("URL: " + ((Dokument)info).URL);
+                    }
+                }
+            }
             return sb.ToString();
         }
 

@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Wissensmanagement
 {
     [Serializable]
+    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type")] // Aktiviert Polymorphie
+    [JsonDerivedType(typeof(Text), "Text")]                     // Fügt die Unterklassen hinzu
+    [JsonDerivedType(typeof(Bild), "Bild")]
+    [JsonDerivedType(typeof(Dokument), "Dokument")]
     public abstract class Information
     {
         public string Titel { get; set; }
