@@ -20,3 +20,7 @@ dargestellt wird: https://mermaid.js.org/syntax/sequenceDiagram.html
 
 Ich habe mich für die Realisation mit C# entschieden, da ich mit dieser Sprache am meisten Erfahrung habe. Da ich
 das Projekt alleine durchführe, verzichte ich auf ein GUI und mache alles in einer Konsolen-App.
+
+## Fazit
+
+Alles in allem hat die Arbeit mehr Zeit und Hirnschmalz in Anspruch genommen, als gedacht. Jedoch hat die Arbeit spass gemacht und ich konnte viel Neues dazu lernen.

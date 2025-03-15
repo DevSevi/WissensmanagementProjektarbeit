@@ -15,7 +15,7 @@
 - Text: "blabla"
 - Tag hinzufügen: "Analyse"
 
-**Anforderung**: Information soll angelegt werden können
+**Anforderung**: Information soll angelegt werden können.
 **Testergebnis**: OK, passt so
 
 # 3: Information suchen
@@ -23,4 +23,4 @@
 - Alle Informationen mit Tag "Analyse" suchen
 
 **Anforderung**: Informationen sollen in Suche erscheinen
-**Testergebnis**: OK, passt so
+**Testergebnis**: Aus Zeitgründen nicht umgesetzt
